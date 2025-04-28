@@ -1,6 +1,8 @@
 package com.xiaostudios.theforgemodtwo;
 
 import com.mojang.logging.LogUtils;
+import com.xiaostudios.theforgemodtwo.item.ModItems;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -29,10 +31,11 @@ public class TheForgeModTwo {
         IEventBus modEventBus = context.getModEventBus();
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
-
-
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+
+        //registering items from ModItems from the item package
+        ModItems.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -46,7 +49,12 @@ public class TheForgeModTwo {
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-
+        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(ModItems.SCEANTINE_INGOT);
+            event.accept(ModItems.SCEANTINE_NUGGET);
+            event.accept(ModItems.SCEANTINE_PAPER);
+            event.accept(ModItems.WRENCH);
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
@@ -56,7 +64,6 @@ public class TheForgeModTwo {
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-    @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents
     {
         @SubscribeEvent
