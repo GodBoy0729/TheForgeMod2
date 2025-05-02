@@ -1,6 +1,7 @@
 package com.xiaostudios.theforgemodtwo;
 
 import com.mojang.logging.LogUtils;
+import com.xiaostudios.theforgemodtwo.block.ModBlocks;
 import com.xiaostudios.theforgemodtwo.item.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
@@ -36,6 +37,7 @@ public class TheForgeModTwo {
 
         //registering items from ModItems from the item package
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -54,6 +56,11 @@ public class TheForgeModTwo {
             event.accept(ModItems.SCEANTINE_NUGGET);
             event.accept(ModItems.SCEANTINE_PAPER);
             event.accept(ModItems.WRENCH);
+        }
+
+        if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
+            event.accept(ModBlocks.SCEANTINE_ORE);
+            event.accept(ModBlocks.DEEPSLATE_SCEANTINE_ORE);
         }
     }
 

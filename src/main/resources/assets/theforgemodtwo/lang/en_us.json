@@ -2,6 +2,9 @@
   "item.theforgemodtwo.sceantine_ingot": "Sceantine Ingot",
   "item.theforgemodtwo.sceantine_nugget": "Sceantine Nugget",
   "item.theforgemodtwo.sceantine_paper": "Sceantine Paper",
-  "item.theforgemodtwo.wrench": "Wrench"
+  "item.theforgemodtwo.wrench": "Wrench",
+
+  "block.theforgemodtwo.sceantine_ore": "Sceantine Ore",
+  "block.theforgemodtwo.deepslate_sceantine_ore": "Deepslate Sceantine Ore"
 
 }
